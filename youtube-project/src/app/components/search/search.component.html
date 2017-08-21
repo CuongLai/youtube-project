@@ -1,0 +1,9 @@
+<form (submit)="search(query.value)">
+  <div>
+    <input type="text" #query>
+  </div>
+</form>
+
+<div *ngFor="let item of searchResults">
+  <p>{{item.snippet.title}}</p>
+</div>
