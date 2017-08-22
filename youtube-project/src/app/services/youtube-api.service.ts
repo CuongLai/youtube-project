@@ -4,11 +4,9 @@ import { Http, Request, RequestOptions, RequestMethod } from '@angular/http';
 @Injectable()
 export class YoutubeApiService {
 
-  constructor(public http:Http) {
-    console.log('Youtube API service connected');
-  }
+  constructor(public http:Http) { }
 
-  getSearchResults(query) {
+  search(query) {
     return this.http.request(new Request(this.options(query)));
   }
 
@@ -21,3 +19,5 @@ export class YoutubeApiService {
     return options;
   }
 }
+
+interface SearchResults { }
