@@ -4,16 +4,16 @@
       <a class="navbar-brand" href="#">Minimal YouTube</a>
     </div>
     <div class="navbar-collapse collapse">
-    <div class="navbar-form">
-      <form (submit)="search(query.value)">
-        <div class="form-group">
-          <input type="text" placeholder="Search for videos..." class="form-control" #query>
-        </div>
-        <!-- <button type="button" class="form-control btn btn-primary">
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-        </button> -->
-      </form>
-    </div>
+      <div class="navbar-form">
+        <form (submit)="search(query.value)">
+          <div class="form-group">
+            <input type="text" placeholder="Search for videos..." class="form-control" #query>
+          </div>
+          <button (click)="search(query.value)" type="button" class="form-control btn btn-primary">
+            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </nav>
@@ -21,11 +21,11 @@
 <div class="container" *ngFor="let item of searchItems">
   <div class="row">
     <div class="col-md-3">
-      <img src="{{item.snippet.thumbnails.medium.url}}" class="img-circle" width="288" height="162">
+      <img src="{{item.snippet.thumbnails.medium.url}}">
     </div>
     <div class="col-md-9">
       <h3>{{item.snippet.title}}</h3>
-      <a href="#">Play</a>
+      <app-player [videoId]=item.id.videoId></app-player>
       <p>{{item.snippet.channelTitle}}</p>
       <p>{{item.snippet.description}}</p>
     </div>

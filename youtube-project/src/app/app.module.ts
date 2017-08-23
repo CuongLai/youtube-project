@@ -5,13 +5,16 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
+import { PlayerComponent } from './components/player/player.component';
 
 import { YoutubeApiService } from './services/youtube-api.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent
+    SearchComponent,
+    PlayerComponent
   ],
   imports: [
     BrowserModule,

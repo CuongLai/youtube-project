@@ -3,14 +3,15 @@ import { Http, Request, RequestOptions, RequestMethod } from '@angular/http';
 
 @Injectable()
 export class YoutubeApiService {
+  videoId: number;
 
   constructor(public http:Http) { }
 
-  search(query) {
-    return this.http.request(new Request(this.options(query)));
+  getVideos(query) {
+    return this.http.request(new Request(this.getOptions(query)));
   }
 
-  options(query) {
+  getOptions(query) {
     let options = new RequestOptions({
       method: RequestMethod.Get,
       url: 'https://www.googleapis.com/youtube/v3/search',
@@ -18,6 +19,21 @@ export class YoutubeApiService {
     });
     return options;
   }
-}
 
-interface SearchResults { }
+  storeVideoId(videoId) {
+    this.videoId = videoId;
+  }
+
+  getVideoById(videoId) {
+    return this.http.request(new Request(this.getOptionsById(videoId)));
+  }
+
+  getOptionsById(videoId) {
+    let options = new RequestOptions({
+      method: RequestMethod.Get,
+      url: 'https://www.googleapis.com/youtube/v3/videos',
+      search: 'part=snippet&id='+videoId+'&key=AIzaSyALl8PIo2ZtBHAeQYxz4hEkzSRkQY1LxZk'
+    });
+    return options;
+  }
+}
