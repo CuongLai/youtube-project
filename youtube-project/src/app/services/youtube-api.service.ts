@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Http, Request, RequestOptions, RequestMethod } from '@angular/http';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class YoutubeApiService {
   videoId: number;
 
+  private playerComponentCallSource = new Subject<any>();
+  playerComponentObservable$ = this.playerComponentCallSource.asObservable();
+
   constructor(public http:Http) { }
 
+  /// GET list of videos
   getVideos(query) {
     return this.http.request(new Request(this.getOptions(query)));
   }
@@ -20,20 +25,22 @@ export class YoutubeApiService {
     return options;
   }
 
-  storeVideoId(videoId) {
-    this.videoId = videoId;
+  /// GET list of videos by id
+  getVideoById() {
+    return this.http.request(new Request(this.getOptionsById()));
   }
 
-  getVideoById(videoId) {
-    return this.http.request(new Request(this.getOptionsById(videoId)));
-  }
-
-  getOptionsById(videoId) {
+  getOptionsById() {
     let options = new RequestOptions({
       method: RequestMethod.Get,
       url: 'https://www.googleapis.com/youtube/v3/videos',
-      search: 'part=snippet&id='+videoId+'&key=AIzaSyALl8PIo2ZtBHAeQYxz4hEkzSRkQY1LxZk'
+      search: 'part=snippet&id='+this.videoId+'&key=AIzaSyALl8PIo2ZtBHAeQYxz4hEkzSRkQY1LxZk'
     });
     return options;
+  }
+
+  callPlayerComponent(videoId) {
+    this.videoId = videoId;
+    this.playerComponentCallSource.next();
   }
 }

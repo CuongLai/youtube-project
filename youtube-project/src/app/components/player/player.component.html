@@ -1,1 +1,4 @@
-<button id="play-button" (click)="getVideoById(videoId)">Play</button>
+<div>
+    <p>Works</p>
+    <p *ngIf="video != null">{{video.snippet.title}}</p>
+</div>

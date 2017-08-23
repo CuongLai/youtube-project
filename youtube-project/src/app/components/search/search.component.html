@@ -18,16 +18,18 @@
   </div>
 </nav>
 
-<div class="container" *ngFor="let item of searchItems">
+<div class="container" *ngFor="let item of searchItems; let i = index">
   <div class="row">
     <div class="col-md-3">
       <img src="{{item.snippet.thumbnails.medium.url}}">
     </div>
     <div class="col-md-9">
       <h3>{{item.snippet.title}}</h3>
-      <app-player [videoId]=item.id.videoId></app-player>
+      <button (click)="callPlayerComponent(item.id.videoId)">Play</button>
       <p>{{item.snippet.channelTitle}}</p>
       <p>{{item.snippet.description}}</p>
     </div>
   </div>
 </div>
+
+<app-player></app-player>
