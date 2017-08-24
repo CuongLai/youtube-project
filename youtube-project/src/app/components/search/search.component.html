@@ -1,4 +1,5 @@
-<nav class="navbar navbar-inverse">
+<!-- search bar -->
+<nav id="search-bar" class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Minimal YouTube</a>
@@ -18,18 +19,20 @@
   </div>
 </nav>
 
-<div class="container" *ngFor="let item of searchItems; let i = index">
-  <div class="row">
-    <div class="col-md-3">
-      <img src="{{item.snippet.thumbnails.medium.url}}">
-    </div>
-    <div class="col-md-9">
-      <h3>{{item.snippet.title}}</h3>
-      <button (click)="callPlayerComponent(item.id.videoId)">Play</button>
-      <p>{{item.snippet.channelTitle}}</p>
-      <p>{{item.snippet.description}}</p>
+<!-- search results -->
+<div id="search-results" class="container">
+  <h2 *ngIf="query.value != ''">Showing results for "{{query.value}}"</h2>
+  <div id="search-result" *ngFor="let item of searchItems; let i = index">
+    <div class="row" *ngIf="item.id.kind == 'youtube#video'">
+      <div class="col-md-3">
+        <img src="{{item.snippet.thumbnails.medium.url}}" width="288" height="162">
+      </div>
+      <div id="search-snippet" class="col-md-9">
+        <h3>{{item.snippet.title}}</h3>
+        <button type="button" id="play-button" class="glyphicon glyphicon-play" (click)="callPlayerComponent(item.id.videoId)"></button>
+        <p>{{item.snippet.channelTitle}}</p>
+        <p>{{item.snippet.description}}</p>
+      </div>
     </div>
   </div>
 </div>
-
-<app-player></app-player>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { YoutubeApiService } from '../../services/youtube-api.service';
 
@@ -12,9 +12,8 @@ export class PlayerComponent implements OnInit {
 
   constructor(private youtubeApi:YoutubeApiService) { }
 
-  /// TODO: Refactor code in application to work ngOnInit
   ngOnInit() {
-    this.youtubeApi.playerComponentObservable$.subscribe(() => {
+    this.youtubeApi._playerComponentReady.subscribe(() => {
       this.getVideoById();
     });
   }

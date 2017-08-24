@@ -1,0 +1,28 @@
+/* search component */
+#search-bar {
+    background-color: #2E2E2E;
+    border-radius: 0;
+}
+
+#search-results {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+#search-result {
+    margin: 5px 0;
+    padding: 5px 0;
+}
+
+#search-snippet {
+    padding-left: 30px;
+}
+
+#play-button {
+    border-radius: 50%;
+    background-color: #E75E5E;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border: none;
+}

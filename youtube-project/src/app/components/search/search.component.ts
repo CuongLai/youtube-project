@@ -13,9 +13,7 @@ export class SearchComponent implements OnInit {
 
   constructor(private youtubeApi:YoutubeApiService) { }
 
-  /// TODO: create solution for loading empty object on init
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   search(query) {
     this.youtubeApi.getVideos(query).subscribe((res) => {

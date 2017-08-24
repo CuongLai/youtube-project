@@ -4,10 +4,10 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class YoutubeApiService {
-  videoId: number;
+  private playerComponentSource = new Subject<any>();
+  _playerComponentReady = this.playerComponentSource.asObservable();
 
-  private playerComponentCallSource = new Subject<any>();
-  playerComponentObservable$ = this.playerComponentCallSource.asObservable();
+  videoId: number;
 
   constructor(public http:Http) { }
 
@@ -25,7 +25,7 @@ export class YoutubeApiService {
     return options;
   }
 
-  /// GET list of videos by id
+  /// GET video by id
   getVideoById() {
     return this.http.request(new Request(this.getOptionsById()));
   }
@@ -39,8 +39,9 @@ export class YoutubeApiService {
     return options;
   }
 
+  /// CALL player component
   callPlayerComponent(videoId) {
     this.videoId = videoId;
-    this.playerComponentCallSource.next();
+    this.playerComponentSource.next();
   }
 }
