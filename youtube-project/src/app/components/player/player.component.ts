@@ -9,6 +9,9 @@ import { YoutubeApiService } from '../../services/youtube-api.service';
 })
 export class PlayerComponent implements OnInit {
   video: any;
+  videoId: string;
+  player: YT.Player;
+  playPause: boolean = false;
 
   constructor(private youtubeApi:YoutubeApiService) { }
 
@@ -21,7 +24,23 @@ export class PlayerComponent implements OnInit {
   getVideoById() {
     this.youtubeApi.getVideoById().subscribe((res) => {
       this.video = res.json().items[0];
-      console.log(this.video);
+      this.videoId = this.video.id;
     });
+  }
+
+  savePlayer(player) {
+    this.player = player;
+    this.player.playVideo();
+    this.playPause = true;
+  }
+
+  toggleVideoState() {
+    this.playPause = !this.playPause;
+    if (this.playPause === true) {
+      this.player.playVideo();
+    }
+    else {
+      this.player.pauseVideo();
+    }
   }
 }

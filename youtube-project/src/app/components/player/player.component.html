@@ -1,5 +1,7 @@
 <nav id="player" class="navbar navbar-inverse navbar-fixed-bottom">
-    <div class="container">
-        <p *ngIf="video != null">{{video.snippet.title}}</p>
+    <div class="container" *ngIf="video != null">
+        <p>{{video.snippet.title}}</p>
+        <youtube-player [videoId]="videoId" (ready)="savePlayer($event)"></youtube-player>
+        <button type="button" (click)="toggleVideoState()">></button>
     </div>
 </nav>
