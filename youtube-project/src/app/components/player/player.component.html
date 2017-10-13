@@ -1,7 +1,25 @@
 <nav id="player" class="navbar navbar-inverse navbar-fixed-bottom">
-    <div class="container" *ngIf="video != null">
-        <p>{{video.snippet.title}}</p>
-        <youtube-player [videoId]="videoId" (ready)="savePlayer($event)"></youtube-player>
-        <button type="button" (click)="toggleVideoState()">></button>
+    <div class="row" *ngIf="video != null">
+        <div id="player-info-section" class="col-md-3">
+            <img id="video-player-thumbnail" src="{{video.snippet.thumbnails.medium.url}}" width="89" height="50">
+            <span>
+                <p id="video-title">{{video.snippet.title}}</p>
+                <p id="channel-title">{{video.snippet.channelTitle}}</p>
+            </span>
+        </div>
+        <div class="col-md-6">
+            <youtube-player id="youtube-player" videoId='{{videoId}}' (ready)="savePlayer($event)"></youtube-player>
+            <button id="play-pause-btn" type="button" (click)="toggleVideoState()" class="glyphicon glyphicon-pause"></button>
+            <span id="player-time-section">
+                <p id="current-time">0:00</p>         
+                <input type="range" id="progress-bar" value="{{progress}}" (change)="seek($event)">
+                <p id="duration">0:00</p>
+            </span>
+        </div>
+        <div id="player-volume-section" class="col-md-3">
+            <button id="video-player-mute" type="button" (click)="muteVolume()" class="glyphicon glyphicon-volume-up"></button>
+            <input id="video-player-volume" type="range" id="volume-bar" value="{{volume}}" (change)="changeVolume($event)">
+            <button id="video-player-fullscreen" type="button" (click)="toggleFullScreen()" class="glyphicon glyphicon-resize-full"></button>
+        </div>
     </div>
 </nav>

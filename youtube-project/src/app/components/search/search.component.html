@@ -21,7 +21,7 @@
 
 <!-- search results -->
 <div id="search-results" class="container">
-  <h2 *ngIf="query.value != ''">Showing results for "{{query.value}}"</h2>
+  <h2 *ngIf="searchClicked == true">Showing results for "{{query.value}}"</h2>
   <div id="search-result" *ngFor="let item of searchItems; let i = index">
     <div class="row" *ngIf="item.id.kind == 'youtube#video'">
       <div class="col-md-3">

@@ -30,6 +30,7 @@ export class YoutubeApiService {
     return this.http.request(new Request(this.getOptionsById()));
   }
 
+  /// GET options by id
   getOptionsById() {
     let options = new RequestOptions({
       method: RequestMethod.Get,

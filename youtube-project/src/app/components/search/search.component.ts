@@ -10,13 +10,14 @@ import { YoutubeApiService } from '../../services/youtube-api.service';
 export class SearchComponent implements OnInit {
   searchItems: any = null;
   videoIndex: number = null;
+  searchClicked: boolean = false;
 
   constructor(private youtubeApi:YoutubeApiService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   search(query) {
+    this.searchClicked = true;
     this.youtubeApi.getVideos(query).subscribe((res) => {
       this.searchItems = res.json().items;
       for (let item of this.searchItems) {

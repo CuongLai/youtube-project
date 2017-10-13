@@ -2,4 +2,27 @@
     background-color: #F1F1F1;
     border: none;
     box-shadow: 1px 1px 5px black;
+    padding: 0;
+}
+
+#youtube-player {
+    display: none;
+}
+
+#video-title {
+    overflow-x: hidden;
+}
+
+#player-info-section {
+    display: flex;
+}
+
+#player-time-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+#player-volume-section {
+    display: flex;
+    justify-content: space-between;
 }
