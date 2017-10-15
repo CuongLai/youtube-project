@@ -4,8 +4,11 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class YoutubeApiService {
-  private playerComponentSource = new Subject<any>();
-  _playerComponentReady = this.playerComponentSource.asObservable();
+  private sendVideoSource = new Subject<any>();
+  _sendVideoSourceReady = this.sendVideoSource.asObservable();
+  
+  private addToQueue = new Subject<any>();
+  _addToQueueReady = this.addToQueue.asObservable();
 
   videoId: number;
 
@@ -41,8 +44,13 @@ export class YoutubeApiService {
   }
 
   /// CALL player component
-  callPlayerComponent(videoId) {
+  sendVideoToPlayerComponent(videoId) {
     this.videoId = videoId;
-    this.playerComponentSource.next();
+    this.sendVideoSource.next();
+  }
+
+  queueToPlayerComponent(videoId) {
+    this.videoId = videoId;
+    this.addToQueue.next();
   }
 }

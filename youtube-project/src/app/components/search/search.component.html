@@ -30,6 +30,7 @@
       <div id="search-snippet" class="col-md-9">
         <h3>{{item.snippet.title}}</h3>
         <button type="button" id="play-button" class="glyphicon glyphicon-play" (click)="callPlayerComponent(item.id.videoId)"></button>
+        <button type="button" (click)="addToQueue(item.id.videoId)">Add to queue</button>
         <p>{{item.snippet.channelTitle}}</p>
         <p>{{item.snippet.description}}</p>
       </div>

@@ -7,9 +7,15 @@
                 <p id="channel-title">{{video.snippet.channelTitle}}</p>
             </span>
         </div>
-        <div class="col-md-6">
+        <div id="player-control-section" class="col-md-6">
             <youtube-player id="youtube-player" videoId='{{videoId}}' (ready)="savePlayer($event)"></youtube-player>
-            <button id="play-pause-btn" type="button" (click)="toggleVideoState()" class="glyphicon glyphicon-pause"></button>
+            <div class="text-center">
+                <button id="shuffle-btn" type="button" (click)="shuffle()" class="glyphicon glyphicon-random"></button>
+                <button id="previous-btn" type="button" (click)="loadPreviousVideo()" class="glyphicon glyphicon-step-backward"></button>
+                <button id="play-pause-btn" type="button" (click)="toggleVideoState()" class="glyphicon glyphicon-pause"></button>
+                <button id="next-btn" type="button" (click)="loadNextVideo()" class="glyphicon glyphicon-step-forward"></button>
+                <button id="repeat-btn" type="button" (click)="repeat()" class="glyphicon glyphicon-refresh"></button>
+            </div>
             <span id="player-time-section">
                 <p id="current-time">0:00</p>         
                 <input type="range" id="progress-bar" value="{{progress}}" (change)="seek($event)">

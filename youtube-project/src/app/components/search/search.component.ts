@@ -17,8 +17,9 @@ export class SearchComponent implements OnInit {
   ngOnInit() { }
 
   search(query) {
-    this.searchClicked = true;
+    this.searchClicked = false;
     this.youtubeApi.getVideos(query).subscribe((res) => {
+      this.searchClicked = true;
       this.searchItems = res.json().items;
       for (let item of this.searchItems) {
         console.log(item);
@@ -27,6 +28,10 @@ export class SearchComponent implements OnInit {
   }
 
   callPlayerComponent(videoId) {
-    this.youtubeApi.callPlayerComponent(videoId);
+    this.youtubeApi.sendVideoToPlayerComponent(videoId);
+  }
+
+  addToQueue(videoId) {
+    this.youtubeApi.queueToPlayerComponent(videoId);
   }
 }
